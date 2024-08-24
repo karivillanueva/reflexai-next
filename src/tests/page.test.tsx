@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import Page from '../src/app/page';
+import Page from '../app/page';
 
 describe('Page', () => {
   it('renders a heading', () => {
     render(<Page />);
 
-    const textElement = screen.getByText(/Get started/i);
+    const textElement = screen.getByText(/ReflexAI/i);
     expect(textElement).toBeInTheDocument();
   });
 });
