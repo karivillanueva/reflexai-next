@@ -4,7 +4,7 @@ import { jest } from '@jest/globals';
 import { useRouter } from 'next/navigation';
 
 import Home from '@/app/page';
-import StartChatButton from '@/app/components/StartChatButton';
+import StartChatButton from '@/app/components/HomeButtons/StartChatButton';
 import { startNewChat } from '@/app/api/chats';
 
 describe('Home Component', () => {

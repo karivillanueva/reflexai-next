@@ -17,7 +17,3 @@ const mockStartNewChat = jest.fn();
 jest.mock('./src/app/api/chats', () => ({
   startNewChat: mockStartNewChat,
 }));
-
-afterEach(() => {
-  jest.clearAllMocks();
-});

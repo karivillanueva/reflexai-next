@@ -1,5 +1,5 @@
-import LinkButton from './components/LinkButton';
-import StartChatButton from './components/StartChatButton';
+import LinkButton from './components/HomeButtons/LinkButton';
+import StartChatButton from './components/HomeButtons/StartChatButton';
 import { ADMIN_PATH } from './utils/constants';
 
 export default function Home() {
