@@ -21,7 +21,7 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <div className="p-4 min-h-screen flex flex-col">
+    <div className="p-4 h-full w-full flex flex-col overflow-scroll">
       <h1 className="text-2xl font-bold mb-4 text-center">
         Administration Dashboard
       </h1>

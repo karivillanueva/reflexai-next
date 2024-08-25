@@ -49,8 +49,8 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="max-h-screen flex bg-white justify-center">
-      <div className="bg-sky-200 w-full lg:w-[30%] min-h-screen p-2 flex flex-col rounded-md">
+    <div className="flex h-full bg-white justify-center">
+      <div className="bg-sky-200 h-full w-full lg:w-[30%] p-2 flex flex-col rounded-md">
         <div
           className="flex h-[100%] overflow-scroll hide-scrollbar flex-col mb-1"
           ref={chatContainerRef}
