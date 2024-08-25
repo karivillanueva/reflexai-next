@@ -2,14 +2,17 @@ import Link from 'next/link';
 
 type LinkButtonType = {
   href: string;
+  id?: string;
   title: string;
   subtitle: string;
 };
 
-const LinkButton = ({ href, title, subtitle }: LinkButtonType) => {
+const LinkButton = ({ href, title, subtitle, id }: LinkButtonType) => {
+  const fullHref = id ? `${href}/${id}` : href;
+
   return (
     <Link
-      href={href}
+      href={fullHref}
       className="group block rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
     >
       <h2 className="mb-3 text-2xl font-semibold">

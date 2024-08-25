@@ -1,8 +1,8 @@
 import React from 'react';
-import { ChatType, SenderEnum } from '../types/ChatType';
+import { BubbleChatType, SenderEnum } from '../types/ChatType';
 
-const BubbleChat = ({ text, sender }: ChatType) => {
-  const isUser = sender === SenderEnum.BOT;
+const BubbleChat = ({ text, sender }: BubbleChatType) => {
+  const isUser = sender === SenderEnum.USER;
 
   return (
     <div

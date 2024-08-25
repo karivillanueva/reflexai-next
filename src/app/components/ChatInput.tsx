@@ -8,9 +8,16 @@ const ChatInput = ({ onSend }: ChatInputType) => {
   const [message, setMessage] = useState('');
 
   const handleSend = () => {
-    if (message.trim()) {
+    if (message) {
       onSend(message);
       setMessage('');
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
     }
   };
 
@@ -20,6 +27,7 @@ const ChatInput = ({ onSend }: ChatInputType) => {
         className="w-full h-20 p-2 border rounded resize-none focus:outline-none focus:ring-2 focus:ring-sky-300"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder="Type your message..."
       />
       <button
