@@ -11,6 +11,7 @@
     "test:cov": "yarn test --coverage --coverageReporters=text --coverageReporters=text-summary --watchAll=false"
   },
   "dependencies": {
+    "mongoose": "^8.5.4",
     "next": "14.2.6",
     "react": "^18",
     "react-dom": "^18",
