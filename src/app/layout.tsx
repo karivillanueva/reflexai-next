@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './styles/globals.css';
+import { Bounce, ToastContainer } from 'react-toastify';
+
 import Header from './components/Header';
+import 'react-toastify/dist/ReactToastify.css';
+import './styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,7 +22,24 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning={true} className={inter.className}>
         <Header />
-        <main className="h-[calc(100vh-44px)]">{children}</main>
+        <main className="h-[calc(100vh-44px)]">
+          <>
+            {children}
+            <ToastContainer
+              position="bottom-right"
+              autoClose={5000}
+              hideProgressBar
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              transition={Bounce}
+              theme="light"
+            />
+          </>
+        </main>
       </body>
     </html>
   );

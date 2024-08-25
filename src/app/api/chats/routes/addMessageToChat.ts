@@ -27,7 +27,8 @@ async function sendOneMessage({
       { new: true }
     );
   } catch (error) {
-    console.log('Error:', error);
+    console.log('Error sending message:', error);
+    throw error;
   }
 }
 

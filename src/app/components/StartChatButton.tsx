@@ -2,10 +2,12 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { Bounce, toast } from 'react-toastify';
+
 import { startNewChat } from '../api/chats';
 import { CHAT_PATH } from '../utils/constants';
 
-const StartChatButton: React.FC = () => {
+const StartChatButton = () => {
   const router = useRouter();
 
   const handleStartChat = async () => {
@@ -13,7 +15,17 @@ const StartChatButton: React.FC = () => {
       const chatId = await startNewChat();
       router.push(`${CHAT_PATH}/${chatId}`);
     } catch (error) {
-      console.error('Failed to start new chat:', error);
+      toast.error('Error creating new chat', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      });
     }
   };
 
