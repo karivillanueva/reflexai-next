@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { startNewChat } from '../api/chats/route';
+import { startNewChat } from '../api/chats';
+import { CHAT_PATH } from '../utils/constants';
 
 const StartChatButton: React.FC = () => {
   const router = useRouter();
@@ -10,7 +11,7 @@ const StartChatButton: React.FC = () => {
   const handleStartChat = async () => {
     try {
       const chatId = await startNewChat();
-      router.push(`/chat/${chatId}`);
+      router.push(`${CHAT_PATH}/${chatId}`);
     } catch (error) {
       console.error('Failed to start new chat:', error);
     }

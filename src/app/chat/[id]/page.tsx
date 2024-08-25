@@ -4,14 +4,14 @@ import { useParams } from 'next/navigation';
 
 import BubbleChat from '@/app/components/BubbleChat';
 import ChatInput from '@/app/components/ChatInput';
-import { ChatType, SenderEnum } from '../../types/ChatType';
-import { addMessageToChat, getMessagesByChatId } from '@/app/api/chats/route';
+import { MessageType, SenderEnum } from '../../types/MessageType';
+import { addMessageToChat, getMessagesByChatId } from '@/app/api/chats';
 
 const ChatPage = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const params = useParams();
   const chatId = params.id as string;
-  const [messages, setMessages] = useState<ChatType[]>([]);
+  const [messages, setMessages] = useState<MessageType[]>([]);
 
   useEffect(() => {
     const loadMessages = async () => {
