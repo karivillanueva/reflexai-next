@@ -70,7 +70,7 @@ const ChatPage = () => {
             ref={chatContainerRef}
           >
             {messages.map((item) => (
-              <BubbleChat sender={item.sender} text={item.text} key={item.id} />
+              <BubbleChat message={item} key={item.id} />
             ))}
           </div>
 

@@ -7,6 +7,7 @@ export const transformToMessages = (
   return messages.map((message) => ({
     sender: message.sender,
     text: message.text,
+    timestamp: message.timestamp,
     id: message._id.toString(),
   }));
 };

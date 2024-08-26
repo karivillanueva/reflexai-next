@@ -3,15 +3,15 @@ export enum SenderEnum {
   BOT = 'bot',
 }
 
-export type BubbleMessageType = {
+export type MessageType = {
   sender: string;
   text: string;
+  timestamp: Date;
+  id: string;
 };
 
-export type MessageType = {
-  id: string;
-} & BubbleMessageType;
-
 export type MessageRequestType = {
+  sender: string;
+  text: string;
   chatId: string;
-} & BubbleMessageType;
+};
