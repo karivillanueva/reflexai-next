@@ -1,7 +1,7 @@
 import { MessageType, SenderEnum } from '../types/MessageType';
 
 const BubbleChat = ({ message }: { message: MessageType }) => {
-  const isUser = message.sender === SenderEnum.USER;
+  const isUser = message.sender !== SenderEnum.BOT;
 
   return (
     <div

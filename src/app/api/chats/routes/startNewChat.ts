@@ -1,13 +1,14 @@
 'use server';
 import { Chat } from '../../../../models/Chat';
 import { connectToMongoDB } from '../../../../lib/mongodb';
+import { CURRENT_USER } from '@/app/utils/constants';
 
 export async function startNewChat(): Promise<string> {
   try {
     await connectToMongoDB();
 
     const newChat = new Chat({
-      user: 'karime',
+      user: CURRENT_USER,
       messages: [],
       lastTimestamp: new Date(),
     });

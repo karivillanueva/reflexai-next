@@ -6,7 +6,8 @@ import { Bounce, toast } from 'react-toastify';
 import BubbleChat from '@/app/components/BubbleChat';
 import ChatInput from '@/app/components/ChatInput';
 import { addMessageToChat, getMessagesByChatId } from '@/app/api/chats';
-import { MessageType, SenderEnum } from '../../types/MessageType';
+import { CURRENT_USER } from '@/app/utils/constants';
+import { MessageType } from '../../types/MessageType';
 
 const ChatPage = () => {
   const params = useParams();
@@ -41,7 +42,7 @@ const ChatPage = () => {
     try {
       await addMessageToChat({
         chatId,
-        sender: SenderEnum.USER,
+        sender: CURRENT_USER,
         text,
       });
       const updatedMessages = await getMessagesByChatId(chatId);
