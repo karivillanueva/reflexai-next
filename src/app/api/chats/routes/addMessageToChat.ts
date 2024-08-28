@@ -2,17 +2,22 @@
 import { Chat } from '../../../../models/Chat';
 import { connectToMongoDB } from '../../../../lib/mongodb';
 import { getRandomResponse } from '@/app/utils/randomMessage';
-import { MessageRequestType, SenderEnum } from '@/app/types/MessageType';
+import {
+  MessageRequestType,
+  MessageType,
+  SenderEnum,
+} from '@/app/types/MessageType';
+import { transformMessage } from '@/app/utils/transformToMessage';
 
 async function sendOneMessage({
   chatId,
   sender,
   text,
-}: MessageRequestType): Promise<void> {
+}: MessageRequestType): Promise<MessageType> {
   try {
     const timestamp = new Date();
 
-    await Chat.findByIdAndUpdate(
+    const response = await Chat.findByIdAndUpdate(
       chatId,
       {
         $push: {
@@ -26,6 +31,11 @@ async function sendOneMessage({
       },
       { new: true }
     );
+
+    if (!response?.messages) throw Error('Error sending message');
+
+    const lastMessage = response.messages[response.messages.length - 1];
+    return transformMessage(lastMessage);
   } catch (error) {
     console.log('Error sending message:', error);
     throw error;
@@ -36,15 +46,19 @@ export async function addMessageToChat({
   chatId,
   sender,
   text,
-}: MessageRequestType): Promise<string> {
+}: MessageRequestType): Promise<MessageType[]> {
   try {
     await connectToMongoDB();
-    await sendOneMessage({ chatId, sender, text });
+    const user_message = await sendOneMessage({ chatId, sender, text });
 
     const response = getRandomResponse();
-    await sendOneMessage({ chatId, sender: SenderEnum.BOT, text: response });
+    const bot_message = await sendOneMessage({
+      chatId,
+      sender: SenderEnum.BOT,
+      text: response,
+    });
 
-    return response;
+    return [user_message, bot_message];
   } catch (error) {
     console.error('Error adding message to chat:', error);
     throw error;

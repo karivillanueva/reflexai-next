@@ -40,13 +40,13 @@ const ChatPage = () => {
 
   const handleSendMessage = async (text: string) => {
     try {
-      await addMessageToChat({
+      const new_mesages = await addMessageToChat({
         chatId,
         sender: CURRENT_USER,
         text,
       });
-      const updatedMessages = await getMessagesByChatId(chatId);
-      setMessages(updatedMessages);
+
+      setMessages((prevState) => [...prevState, ...new_mesages]);
     } catch (e) {
       toast.error('Error sending message', {
         position: 'bottom-right',
