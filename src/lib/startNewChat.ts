@@ -1,6 +1,6 @@
 'use server';
-import { Chat } from '../../../../models/Chat';
-import { connectToMongoDB } from '../../../../lib/mongodb';
+import { Chat } from '../models/Chat';
+import { connectToMongoDB } from './mongodb';
 import { CURRENT_USER } from '@/app/utils/constants';
 
 export async function startNewChat(): Promise<string> {

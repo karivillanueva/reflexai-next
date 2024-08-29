@@ -1,6 +1,6 @@
 'use server';
-import { Chat } from '../../../../models/Chat';
-import { connectToMongoDB } from '../../../../lib/mongodb';
+import { Chat } from './../models/Chat';
+import { connectToMongoDB } from './mongodb';
 import { getRandomResponse } from '@/app/utils/randomMessage';
 import {
   MessageRequestType,

@@ -2,10 +2,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Bounce, toast } from 'react-toastify';
+import axios from 'axios';
 
-import BubbleChat from '@/app/components/BubbleChat';
-import ChatInput from '@/app/components/ChatInput';
-import { addMessageToChat, getMessagesByChatId } from '@/app/api/chats';
+import BubbleChat from '@/app/chat/[id]/components/BubbleChat';
+import ChatInput from '@/app/chat/[id]/components/ChatInput';
 import { CURRENT_USER } from '@/app/utils/constants';
 import { MessageType } from '../../types/MessageType';
 
@@ -20,8 +20,9 @@ const ChatPage = () => {
   useEffect(() => {
     const loadMessages = async () => {
       try {
-        const loadedMessages = await getMessagesByChatId(chatId);
-        setMessages(loadedMessages);
+        const response = await axios.get(`/api/messages?id=${chatId}`);
+
+        setMessages(response.data);
         setLoading(false);
       } catch (error) {
         router.push('/error');
@@ -40,13 +41,13 @@ const ChatPage = () => {
 
   const handleSendMessage = async (text: string) => {
     try {
-      const new_mesages = await addMessageToChat({
+      const response = await axios.post('/api/messages/add', {
         chatId,
         sender: CURRENT_USER,
         text,
       });
 
-      setMessages((prevState) => [...prevState, ...new_mesages]);
+      setMessages((prevState) => [...prevState, ...response.data]);
     } catch (e) {
       toast.error('Error sending message', {
         position: 'bottom-right',

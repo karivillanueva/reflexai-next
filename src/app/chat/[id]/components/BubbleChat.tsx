@@ -1,4 +1,5 @@
-import { MessageType, SenderEnum } from '../types/MessageType';
+import { MessageType, SenderEnum } from '../../../types/MessageType';
+import { formatDate } from '../../../utils/formatDate';
 
 const BubbleChat = ({ message }: { message: MessageType }) => {
   const isUser = message.sender !== SenderEnum.BOT;
@@ -18,7 +19,7 @@ const BubbleChat = ({ message }: { message: MessageType }) => {
       </div>
       <p className="text-gray-600 text-xs mt-1 mx-2">
         {isUser ? 'You: ' : 'Bot: '}
-        {message.timestamp.toDateString()}
+        {formatDate(message.timestamp)}
       </p>
     </div>
   );

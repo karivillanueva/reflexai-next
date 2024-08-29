@@ -14,6 +14,6 @@ jest.mock('next/navigation', () => ({
 
 const mockStartNewChat = jest.fn();
 
-jest.mock('./src/app/api/chats', () => ({
+jest.mock('./src/app/api/chat/start/route', () => ({
   startNewChat: mockStartNewChat,
 }));

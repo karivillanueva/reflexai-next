@@ -1,6 +1,6 @@
 'use server';
-import { Chat } from '../../../../models/Chat';
-import { connectToMongoDB } from '../../../../lib/mongodb';
+import { Chat } from './../models/Chat';
+import { connectToMongoDB } from './mongodb';
 import { MessageType } from '@/app/types/MessageType';
 import { transformToMessages } from '@/app/utils/transformToMessage';
 

@@ -1,9 +1,9 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Bounce, toast } from 'react-toastify';
+import axios from 'axios';
 
-import ChatSummary from '../components/ChatSummary';
-import { getAllChats } from '../api/chats';
+import ChatSummary from './components/ChatSummary';
 import { ChatType } from '../types/ChatType';
 
 const AdminDashboard = () => {
@@ -12,8 +12,8 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        const allChats = await getAllChats();
-        setChats(allChats);
+        const response = await axios.get('/api/chat');
+        setChats(response.data);
       } catch (error) {
         toast.error('Error fetching chats', {
           position: 'bottom-right',

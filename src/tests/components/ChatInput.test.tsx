@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import ChatInput from '@/app/components/ChatInput';
+import ChatInput from '@/app/chat/[id]/components/ChatInput';
 
 describe('ChatInput Component', () => {
   it('should render the textarea and button', () => {

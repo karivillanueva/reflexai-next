@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 type ChatInputType = {
@@ -30,12 +31,13 @@ const ChatInput = ({ onSend }: ChatInputType) => {
         onKeyDown={handleKeyDown}
         placeholder="Type your message..."
       />
-      <button
+      <Link
+        href={'#'}
         onClick={handleSend}
         className="ml-2 p-2 bg-sky-500 text-white rounded-r-lg hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-400"
       >
         Send
-      </button>
+      </Link>
     </div>
   );
 };
